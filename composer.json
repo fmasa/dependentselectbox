@@ -11,7 +11,8 @@
 	}
 	],
 	"require": {
-		"nette/nette": "*"
+		"nette/forms": "^2.1",
+		"nette/application": "^2.1"
 	},
 	"autoload": {
 		"psr-0": {
