@@ -58,9 +58,9 @@ class DependentSelectBox extends SelectBox {
 	 * @param SelectBox|DependentSelectBox|FormControlDependencyHelper $depends SelectBox on which is this control attached
 	 * @param callback $dataCallback Callback for data retreiving function($form, $dependentSelectBox)
 	 */
-	public function __construct($label, $parents, $dataCallback) {
+	public function __construct($label, $parents, callable $dataCallback) {
 		parent::__construct($label, null, null);
-		$this->dataCallback = new \Nette\Callback($dataCallback);
+		$this->dataCallback = $dataCallback;
 		if(!is_array($parents))
 			$parents = ($parents === null) ? array() : array($parents);
 		$this->parents = $parents;
@@ -171,10 +171,10 @@ class DependentSelectBox extends SelectBox {
 	 * @param mixed Parameters passed to callback
 	 * @return DependentSelectBox  provides a fluent interface
 	 */
-	public function addOnSubmitCallback($callback, $parameter = null, $_ = null) {
+	public function addOnSubmitCallback(callable $callback, $parameter = null, $_ = null) {
 		$params = func_get_args();
 		unset($params[0]);
-		$this->onSubmit[] = array(new \Nette\Callback($callback), $params);
+		$this->onSubmit[] = array($callback, $params);
 		return $this;
 	}
 
@@ -305,7 +305,8 @@ class DependentSelectBox extends SelectBox {
 	 * @param Form $form Form with values
 	 */
 	protected function setItemsFromCallback($form) {
-		$data = $this->dataCallback->invoke($form, $this);
+		$callback = $this->dataCallback;
+		$data = $callback($form, $this);
 		if(!is_array($data))
 			throw new InvalidArgumentException("Data must be array !");
 		$this->setItems($data);
