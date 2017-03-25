@@ -8,11 +8,8 @@
 namespace DependentSelectBox;
 
 use Nette\Application\Responses\JsonResponse;
-use Nette\Forms\Container as FormContainer;
 use Nette\Application\UI\Presenter;
 use Nette\InvalidStateException;
-
-// \Nette\Forms\Container::extensionMethod("addJsonDependentSelectBox", "DependentSelectBox\JsonDependentSelectBox::formAddJsonDependentSelectBox");
 
 class JsonDependentSelectBox extends DependentSelectBox
 {
@@ -51,25 +48,6 @@ class JsonDependentSelectBox extends DependentSelectBox
 		}
 		$response = new JsonResponse($payload);
 		$presenter->sendResponse($response);
-	}
-
-
-	/**
-	 * @deprecated Alias for Container_prototype_addDependentSelectBox
-	 */
-	public static function formAddJsonDependentSelectBox($_this, $name, $label, $parents, $dataCallback)
-	{
-		return self::Container_prototype_addJsonDependentSelectBox($_this, $name, $label, $parents, $dataCallback);
-	}
-
-	public static function Container_prototype_addJsonDependentSelectBox(FormContainer $obj, $name, $label, $parents, $dataCallback)
-	{
-		return $obj[$name] = new JsonDependentSelectBox($label, $parents, $dataCallback);
-	}
-
-	public static function register($methodName = "addJsonDependentSelectBox")
-	{
-		FormContainer::extensionMethod($methodName, "DependentSelectBox\JsonDependentSelectBox::Container_prototype_addJsonDependentSelectBox");
 	}
 
 }

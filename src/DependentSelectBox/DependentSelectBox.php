@@ -11,8 +11,6 @@ use Nette\Forms\Controls\SelectBox;
 use InvalidArgumentException;
 use LogicException;
 use Nette\NotSupportedException;
-use Nette\Forms\Container as FormContainer;
-
 
 class DependentSelectBox extends SelectBox
 {
@@ -397,16 +395,6 @@ class DependentSelectBox extends SelectBox
 		$keys = array_keys($this->getItems());
 		$key = reset($keys);
 		$this->setValue($key, false);
-	}
-
-	public static function Container_prototype_addDependentSelectBox(FormContainer $obj, $name, $label, $parents, $dataCallback)
-	{
-		return $obj[$name] = new DependentSelectBox($label, $parents, $dataCallback);
-	}
-
-	public static function register($methodName = "addDependentSelectBox")
-	{
-		FormContainer::extensionMethod($methodName, "DependentSelectBox\DependentSelectBox::Container_prototype_addDependentSelectBox");
 	}
 
 }
