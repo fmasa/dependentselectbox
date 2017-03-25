@@ -17,8 +17,6 @@ use Nette\InvalidStateException;
 class FormControlDependencyHelper extends Object
 {
 
-// <editor-fold defaultstate="collapsed" desc="variables">
-
 	/** Dont use directly, button allready created and position was defined in other class */
 	const POSITION_UNDEFINED = 0;
 	/** Put button on current position */
@@ -43,9 +41,6 @@ class FormControlDependencyHelper extends Object
 	protected $button = null;
 	/** @var String SubmitButton-s label */
 	protected $buttonText = "Reload";
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="constructor">
 
 	/**
 	 *
@@ -60,10 +55,6 @@ class FormControlDependencyHelper extends Object
 		if ($this->control->lookup('Nette\Forms\Container', false) === null)
 			throw new InvalidArgumentException("Components should be assigned to FormContainer !");
 	}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="getters & setters & add & remove">
 
 	/**
 	 * Is there any button with same name ?
@@ -136,10 +127,6 @@ class FormControlDependencyHelper extends Object
 		$this->buttonPosition = $buttonPosition;
 		return $this;
 	}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="tools & helpers">
 
 	/**
 	 * Create button if no button is attached to control
@@ -223,7 +210,5 @@ class FormControlDependencyHelper extends Object
 	{
 		return $componentName . self::$buttonSuffix;
 	}
-
-// </editor-fold>
 
 }

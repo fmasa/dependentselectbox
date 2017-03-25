@@ -17,8 +17,6 @@ use Nette\Forms\Container as FormContainer;
 class DependentSelectBox extends SelectBox
 {
 
-// <editor-fold defaultstate="collapsed" desc="variables">
-
 	/** @var boolean "Disable" child DependentSelectBox-es or select 1st value? (Disabling does not effect validation) */
 	public static $disableChilds = true;
 	/** @var string Html class set on "disabled" control */
@@ -48,10 +46,6 @@ class DependentSelectBox extends SelectBox
 	/** Unselected values */
 	private static $emptyValues = array('', null);
 
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="constructor, initializing, attaching">
 
 	/**
 	 * Constructor
@@ -114,10 +108,6 @@ class DependentSelectBox extends SelectBox
 			}
 		}
 	}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="getters & setters & add & remove">
 
 	/**
 	 * Set value of selectbox
@@ -202,11 +192,6 @@ class DependentSelectBox extends SelectBox
 		return $this->parents;
 	}
 
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="signals">
-
 	/**
 	 * Handler which is called when form is submmited by button of this control
 	 * @param SubmitButton $button
@@ -232,10 +217,6 @@ class DependentSelectBox extends SelectBox
 		}
 
 	}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="tools & helpers">
 
 	/**
 	 * "Remake" tree of dependent components
@@ -427,7 +408,5 @@ class DependentSelectBox extends SelectBox
 	{
 		FormContainer::extensionMethod($methodName, "DependentSelectBox\DependentSelectBox::Container_prototype_addDependentSelectBox");
 	}
-
-// </editor-fold>
 
 }
